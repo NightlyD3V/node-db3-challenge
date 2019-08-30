@@ -25,7 +25,7 @@ function findSteps(scheme_id) {
     .where({ scheme_id });
 };
 
-function add(scheme) {
+function add(schemeData) {
     return db('schemes').insert(schemeData)
     .then((ids) => {
         return findById(ids[0]);
