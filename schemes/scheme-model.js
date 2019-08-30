@@ -17,11 +17,12 @@ function findById(id) {
     return db('schemes').where({ id }).first();
 };
 
-function findSteps(id) {
-    return db('steps as s')
-    .join('schemes as sc', 'sc.id', 's.scheme_id')
+function findSteps(scheme_id) {
+    return db('schemes as sc')
+    .join('steps as s', 'sc.id', 's.scheme_id')
     .select('s.id', 's.step_number', 'sc.scheme_name','s.instructions')
-    .where({ id });
+    .orderBy('s.step_number')
+    .where({ scheme_id });
 };
 
 function add(scheme) {
